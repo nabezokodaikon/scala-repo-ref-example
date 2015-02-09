@@ -6,6 +6,12 @@ object Dependencies {
   val all = Seq(scalatest)
 }
 
+object GitHub {
+  val util = uri("https://github.com/nabezokodaikon/scala-repo-example.git")
+  val util2 = uri("https://github.com/nabezokodaikon/scala-repo-example.git#feature")
+  val all = Seq(util, util2)
+}
+
 object Resolvers {
   val snapshots = "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots"
   val releases = "releases"  at "http://oss.sonatype.org/content/repositories/releases"
@@ -42,5 +48,5 @@ object Build extends Build {
       resolvers ++= Resolvers.all
       // add other settings here
     ) ++ Format.all
-  )
+  ).dependsOn(GitHub.util2).dependsOn(GitHub.util)
 }
